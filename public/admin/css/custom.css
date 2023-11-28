@@ -1,0 +1,92 @@
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding : 0px;
+    margin-left: 0px;
+    display: inline;
+    border: 0px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    border: 0px;
+}
+tbody tr td img{
+    width: 45px !important;
+    height: 50px !important;
+}
+
+.delete-img{
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    background: red;
+    color: #fff;
+    border-radius: 50% 50%;
+    text-align: center;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+    vertical-align: middle;
+    opacity: .7;
+}
+.bg-gradient-primary{
+    /* background: rgb(229,139,190) !important;
+    background: radial-gradient(circle, rgba(229,139,190,1) 0%, rgba(235,95,174,1) 35%, rgba(196,7,114,1) 100%) !important; */
+    background: rgb(11,48,207);
+background: linear-gradient(90deg, rgba(11,48,207,1) 0%, rgba(53,7,146,1) 100%, rgba(0,212,255,1) 100%);
+    /* background:radial-gradient(circle, rgba(224,104,77,1) 0%, rgba(139,23,128,1) 35%, rgba(24,5,21,1) 100%) !important; */
+  }
+/* request loader css start */
+.request-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #0000007a;
+    z-index: 10000;
+    display: none;
+}
+
+.request-loader img {
+    position: fixed;
+    display: none;
+    width: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.request-loader.show {
+    display: block;
+}
+
+.request-loader.show img {
+    display: block;
+}
+/* request loader css end */
+
+@media (min-width: 768px){
+    .sidebar .nav-item .nav-link span {
+        font-size: 1rem;
+        color: #fff;
+    }
+}
+
+/* Raz */
+@media only screen and (max-width: 767px) {
+    .d-upto-md-none {
+        display: none !important;
+    }
+    #uploaded_image_adv img, video{
+        width: 100% !important;
+        height: 230px !important;
+    }
+}
+
+table.dataTable thead th {
+    border-bottom: none !important;
+    border-top: none !important;
+}
+ 
+table.dataTable tfoot th {
+    border-top: none;
+    border-bottom: 1px solid  #111;
+}
