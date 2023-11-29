@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title','Admin | Farmer Information')
+@section('title','Admin | Students Information')
 
 @section('content')
 
@@ -31,7 +31,6 @@
                     <table class="table table-bordered table-sm js-dt" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Name</th>
                             <th>Class</th>
                             <th>Father's Name</th>
@@ -44,16 +43,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach($students as $student)
+                            @foreach($students as $student)
                             <tr>
-                                <td>{{ @$city->farmer_id }}</td>
-                                <td>{{ date_format(date_create(@$city->date), 'd M Y') }}</td>
+                                <td>{{ $student->name }}</td>
+                                <td>{{ $student->cls->class_name }}</td>
+                                <td>{{ $student->f_name }}</td>
+                                <td>{{ $student->m_name }}</td>
+                                <td>{{ $student->address }}</td>
+                                <td>{{ $student->phone }}</td>
                                 @if (auth()->user()->type=='Admin')
                                 <td class="text-center">
-                                    <a class="btn btn-success btn-sm" href="{{ route('information.edit',$city->id) }}">
+                                    <a class="btn btn-success btn-sm" href="{{ route('students.edit',$student->id) }}">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form class="deleteform d-inline-block" action="{{route('information.destroy',$city->id)}}" method="post">
+                                    <form class="deleteform d-inline-block" action="{{route('students.destroy',$student->id)}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-sm btn-danger deletebtn">
@@ -65,7 +68,7 @@
                                 </td>
                                 @endif
                             </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

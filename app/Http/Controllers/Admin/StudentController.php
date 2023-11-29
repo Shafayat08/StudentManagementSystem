@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classes;
 use App\Models\Students;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
 
 class StudentController extends Controller
 {
@@ -27,7 +31,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.student.add');
+        $classes = Classes::all();
+        return view('admin.pages.student.add', compact('classes'));
     }
 
     /**
@@ -38,7 +43,17 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $students = new Students();
+        $students->name= $request ->input('name');
+        $students->class_id= $request ->input('class_id');
+        $students->f_name= $request ->input('f_name');
+        $students->m_name= $request ->input('m_name');
+        $students->address= $request ->input('address');
+        $students->phone= $request ->input('phone');
+
+        $students->save();
+        Session::flash('success', 'Student Added');
+        return Redirect::route('students.create');
     }
 
     /**
@@ -49,7 +64,7 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -60,7 +75,9 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $students = Students::find($id);
+        $classes = Classes::all();
+        return view('admin.pages.student.edit', compact('students', 'classes'));
     }
 
     /**
@@ -72,7 +89,16 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $students = Students::find($id);
+        $students->name= $request ->input('name');
+        $students->class_id= $request ->input('class_id');
+        $students->f_name= $request ->input('f_name');
+        $students->m_name= $request ->input('m_name');
+        $students->address= $request ->input('address');
+        $students->phone= $request ->input('phone');
+        $students ->update();
+        Session::flash('success', 'Student Information Updated');
+        return Redirect::route('students.index');
     }
 
     /**
@@ -83,6 +109,9 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $students = Students::find($id);
+        $students ->delete();
+        Session::flash('warning', 'Information Deleted');
+        return Redirect::route('students.index');
     }
 }

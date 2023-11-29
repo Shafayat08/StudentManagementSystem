@@ -9,4 +9,8 @@ class Students extends Model
 {
     use HasFactory;
     protected $table= 'students';
+
+    public function cls() {
+        return $this->belongsTo(Classes::class, 'class_id', 'id');
+    }
 }
