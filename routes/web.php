@@ -79,8 +79,8 @@ Route::get('/clear-cache', function() {
 Route::group(['middleware'=>['auth']],function (){
     Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('/students', StudentController::class);
+    Route::resource('/fee', FeeController::class);
     Route::resource('/user', UserController::class);
-
 });
 Route::get('/tour_leader/signup', [TourLeaderController::class, 'signup'])->name('signup');
 Route::post('/tour_leader/signup', [TourLeaderController::class, 'postSignup'])->name('register');

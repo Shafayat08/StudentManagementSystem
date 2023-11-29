@@ -8,12 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Fee extends Model
 {
     use HasFactory;
-    protected $table= 'hotel_fees';
+    protected $table= 'fee';
 
-    public function hotel() {
-        return $this->belongsTo(Hotel::class, 'hotel_id', 'id');
-    }
-    public function accom() {
-        return $this->belongsTo(Accommodation::class, 'accommodation_type_id', 'id');
+    public function std() {
+        return $this->belongsTo(Students::class, 'student_id', 'id');
     }
 }

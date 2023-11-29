@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Fee;
 use App\Models\Students;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
-class StudentController extends Controller
+class FeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +18,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Students::all();
-        return view('admin.pages.student.index',compact('students'));
-
+        $fees = Fee::all();
+        return view('admin.pages.fee.index', compact('fees'));
     }
 
     /**
@@ -27,7 +29,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.student.add');
+        $students = Students::all();
+        return view('admin.pages.fee.add', compact('students'));
     }
 
     /**
@@ -38,7 +41,17 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fees = new Fee();
+        $fees->student_id= $request ->input('student_id');
+        $fees->month= $request ->input('month');
+        $fees->year= $request ->input('year');
+        $fees->amount= $request ->input('amount');
+
+        $fees->save();
+
+
+        Session::flash('success', 'Fee Added');
+        return Redirect::route('fee.create');
     }
 
     /**

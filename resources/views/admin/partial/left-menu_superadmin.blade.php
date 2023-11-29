@@ -11,6 +11,12 @@
       <span>Student Information</span>
   </a>
 </li>
+<li class="nav-item {{ request()->is('fee*')?'active':'' }}">
+  <a class="nav-link" href="{{ route('fee.index') }}">
+      <i class="fas fa-fw fa-user"></i>
+      <span>Manage Fee</span>
+  </a>
+</li>
 
 @if (auth()->user()->type=='Admin')
 <li class="nav-item {{ request()->is('user*')?'active':'' }}">
