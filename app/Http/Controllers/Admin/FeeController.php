@@ -73,7 +73,9 @@ class FeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $fee = Fee::find($id);
+        $students = Students::all();
+        return view('admin.pages.fee.edit', compact('fee', 'students'));
     }
 
     /**
@@ -85,7 +87,14 @@ class FeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $fees = Fee::find($id);
+        $fees->student_id= $request ->input('student_id');
+        $fees->month= $request ->input('month');
+        $fees->year= $request ->input('year');
+        $fees->amount= $request ->input('amount');
+        $fees ->update();
+        Session::flash('success', 'Fee Updated');
+        return Redirect::route('fee.index');
     }
 
     /**
@@ -96,6 +105,9 @@ class FeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $fees = Fee::find($id);
+        $fees ->delete();
+        Session::flash('warning', 'Fee Deleted');
+        return Redirect::route('fee.index');
     }
 }
