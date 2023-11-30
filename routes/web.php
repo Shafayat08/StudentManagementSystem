@@ -45,6 +45,7 @@ use App\Http\Controllers\Passenger\PassengerReportController;
 use App\Http\Controllers\Passenger\SpecialRequestController;
 use App\Http\Controllers\QrController;
 use App\Http\Controllers\Admin\FarmerController;
+use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Transport\GroundTransportReservationController;
 use Illuminate\Support\Facades\Artisan;
@@ -81,6 +82,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::resource('/students', StudentController::class);
     Route::resource('/fee', FeeController::class);
     Route::resource('/user', UserController::class);
+    Route::resource('/purchase', PurchaseController::class);
 });
 Route::get('/tour_leader/signup', [TourLeaderController::class, 'signup'])->name('signup');
 Route::post('/tour_leader/signup', [TourLeaderController::class, 'postSignup'])->name('register');

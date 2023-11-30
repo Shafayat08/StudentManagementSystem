@@ -17,6 +17,12 @@
       <span>Manage Fee</span>
   </a>
 </li>
+<li class="nav-item {{ request()->is('purchase*')?'active':'' }}">
+  <a class="nav-link" href="{{ route('purchase.index') }}">
+      <i class="fas fa-fw fa-user"></i>
+      <span>Manage Purchase</span>
+  </a>
+</li>
 
 @if (auth()->user()->type=='Admin')
 <li class="nav-item {{ request()->is('user*')?'active':'' }}">
