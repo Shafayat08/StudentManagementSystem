@@ -1,5 +1,5 @@
 <ul
-        class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion"
+        class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion"
         id="accordionSidebar"
 >
     <!-- Sidebar - Brand -->
