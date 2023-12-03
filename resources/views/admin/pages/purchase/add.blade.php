@@ -9,12 +9,10 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('fee.index') }}">Manage Purchase</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('purchase.index') }}">Manage Purchase</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Add Purchase Information</li>
             </ol>
         </nav>
-
-
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header bg-default py-2 d-flex justify-content-between align-items-center">
@@ -32,9 +30,9 @@
                                 <label for="" class="font-weight-bold">Student Name<span class="text-danger">*</span></label>
                                 <select class="form-control" name="student_id">
                                     <option value="">Select Student</option>
-                                    {{-- @foreach ($students as $student)
+                                    @foreach ($students as $student)
                                         <option value="{{ $student->id }}">{{ $student->name }}</option>
-                                    @endforeach --}}
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -47,8 +45,8 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="" class="font-weight-bold">Year<span class="text-danger">*</span></label>
-                                <input id="from" type="text" class="form-control" name="year" value=""  placeholder="">
+                                <label for="" class="font-weight-bold">Amout<span class="text-danger">*</span></label>
+                                <input id="from" type="text" class="form-control" name="b_amount" value=""  placeholder="">
                                 <p id="err-from" class="mb-0 text-danger small em"></p>
                             </div>
                         </div>
@@ -56,8 +54,15 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
+                                <label for="" class="font-weight-bold">Uniform<span class="text-danger">*</span></label>
+                                <input id="from" type="text" class="form-control" name="uniform" value=""  placeholder="">
+                                <p id="err-from" class="mb-0 text-danger small em"></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
                                 <label for="" class="font-weight-bold">Amount<span class="text-danger">*</span></label>
-                                <input id="from" type="text" class="form-control" name="amount" value=""  placeholder="">
+                                <input id="from" type="text" class="form-control" name="u_amount" value=""  placeholder="">
                                 <p id="err-from" class="mb-0 text-danger small em"></p>
                             </div>
                         </div>

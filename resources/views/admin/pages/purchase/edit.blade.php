@@ -13,8 +13,8 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('fee.index') }}">Manage Fee</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit Fee</li>
+                <li class="breadcrumb-item"><a href="{{ route('purchase.index') }}">Manage Fee</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Information</li>
             </ol>
         </nav>
 
@@ -22,11 +22,11 @@
         <div class="card shadow mb-4">
             <div class="card-header bg-primary py-3 d-flex justify-content-between align-items-center">
                 <h6 class="m-0 font-weight-bold text-white">
-                    <i class="fas fa fa-desktop"></i> Edit Fee
+                    <i class="fas fa fa-desktop"></i> Edit Information
                 </h6>
 
             </div>
-            <form id="ajaxForm" class="" action="{{route('fee.update',$fee->id)}}" method="POST">
+            <form id="ajaxForm" class="" action="{{route('purchase.update',$purchases->id)}}" method="POST">
                 @csrf
                 @method('put')
                 <div class="card-body">
@@ -37,22 +37,22 @@
                                 <select class="form-control" name="student_id">
                                     <option value="">Select Student</option>
                                     @foreach ($students as $student)
-                                        <option value="{{ $student->id }}" {{ $fee->student_id  == $student->id ? 'selected' : '' }}>{{ $student->name }}</option>
+                                        <option value="{{ $student->id }}" {{ $purchases->student_id  == $student->id ? 'selected' : '' }}>{{ $student->name }}</option>
                                     @endforeach
                                 </select>
-                            </div>                          
+                            </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="" class="font-weight-bold">Month<span class="text-danger">*</span></label>
-                                <input id="from" type="text" class="form-control" name="month" value="{{$fee->month}}"  placeholder="">
+                                <label for="" class="font-weight-bold">Book<span class="text-danger">*</span></label>
+                                <input id="from" type="text" class="form-control" name="book" value="{{$purchases->book}}"  placeholder="">
                                 <p id="err-from" class="mb-0 text-danger small em"></p>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="" class="font-weight-bold">Year<span class="text-danger">*</span></label>
-                                <input id="from" type="text" class="form-control" name="year" value="{{$fee->year}}"  placeholder="">
+                                <label for="" class="font-weight-bold">Amout<span class="text-danger">*</span></label>
+                                <input id="from" type="text" class="form-control" name="b_amount" value="{{$purchases->b_amount}}"  placeholder="">
                                 <p id="err-from" class="mb-0 text-danger small em"></p>
                             </div>
                         </div>
@@ -60,8 +60,15 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
+                                <label for="" class="font-weight-bold">Uniform<span class="text-danger">*</span></label>
+                                <input id="from" type="text" class="form-control" name="uniform" value="{{$purchases->uniform}}"  placeholder="">
+                                <p id="err-from" class="mb-0 text-danger small em"></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
                                 <label for="" class="font-weight-bold">Amount<span class="text-danger">*</span></label>
-                                <input id="from" type="text" class="form-control" name="amount" value="{{$fee->amount}}"  placeholder="">
+                                <input id="from" type="text" class="form-control" name="u_amount" value="{{$purchases->u_amount}}"  placeholder="">
                                 <p id="err-from" class="mb-0 text-danger small em"></p>
                             </div>
                         </div>

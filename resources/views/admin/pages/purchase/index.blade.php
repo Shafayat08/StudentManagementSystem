@@ -40,20 +40,21 @@
                                 <th class="text-center">Action</th>
                             @endif
                         </tr>
-                        {{-- </thead>
+                        </thead>
                             <tbody>
-                                @foreach($fees as $fee)
+                                @foreach($purchases as $purchase)
                                 <tr>
-                                    <td>{{ @$fee->std->name }}</td>
-                                    <td>{{ @$fee->month }}</td>
-                                    <td>{{ @$fee->year }}</td>
-                                    <td>{{ @$fee->amount }}</td>
+                                    <td>{{ @$purchase->std->name }}</td>
+                                    <td>{{ @$purchase->book }}</td>
+                                    <td>{{ @$purchase->b_amount }}</td>
+                                    <td>{{ @$purchase->uniform }}</td>
+                                    <td>{{ @$purchase->u_amount }}</td>
                                     @if (auth()->user()->type=='Admin')
                                     <td class="text-center">
-                                        <a class="btn btn-success btn-sm" href="{{ route('fee.edit',$fee->id) }}">
+                                        <a class="btn btn-success btn-sm" href="{{ route('purchase.edit',$purchase->id) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form class="deleteform d-inline-block" action="{{route('fee.destroy',$fee->id)}}" method="post">
+                                        <form class="deleteform d-inline-block" action="{{route('purchase.destroy',$purchase->id)}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-sm btn-danger deletebtn">
@@ -66,7 +67,7 @@
                                     @endif
                                 </tr>
                                 @endforeach
-                            </tbody> --}}
+                            </tbody>
                     </table>
                 </div>
             </div>

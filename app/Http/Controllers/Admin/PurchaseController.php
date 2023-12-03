@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Purchased;
+use App\Models\Students;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class PurchaseController extends Controller
 {
@@ -14,7 +18,8 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.purchase.index');
+        $purchases = Purchased::all();
+        return view('admin.pages.purchase.index', compact('purchases'));
     }
 
     /**
@@ -24,7 +29,8 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.purchase.add');
+        $students = Students::all();
+        return view('admin.pages.purchase.add',compact('students'));
     }
 
     /**
@@ -35,7 +41,16 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $purchases = new Purchased();
+        $purchases->student_id= $request ->input('student_id');
+        $purchases->book= $request ->input('book');
+        $purchases->b_amount= $request ->input('b_amount');
+        $purchases->uniform= $request ->input('uniform');
+        $purchases->u_amount= $request ->input('u_amount');
+        $purchases->save();
+
+        Session::flash('success', 'Puechase Information Added');
+        return Redirect::route('purchase.create');
     }
 
     /**
@@ -57,7 +72,9 @@ class PurchaseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $students = Students::all();
+        $purchases = Purchased::find($id);
+        return view('admin.pages.purchase.edit',compact('students', 'purchases'));
     }
 
     /**
@@ -69,7 +86,15 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $purchases = Purchased::find($id);
+        $purchases->student_id= $request ->input('student_id');
+        $purchases->book= $request ->input('book');
+        $purchases->b_amount= $request ->input('b_amount');
+        $purchases->uniform= $request ->input('uniform');
+        $purchases->u_amount= $request ->input('u_amount');
+        $purchases ->update();
+        Session::flash('success', 'Information Updated');
+        return Redirect::route('purchase.index');
     }
 
     /**
@@ -80,6 +105,9 @@ class PurchaseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $purchases = Purchased::find($id);
+        $purchases ->delete();
+        Session::flash('warning', 'Information Deleted');
+        return Redirect::route('purchase.index');
     }
 }
