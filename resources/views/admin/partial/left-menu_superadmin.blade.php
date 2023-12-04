@@ -24,6 +24,14 @@
   </a>
 </li>
 
+<li class="nav-item {{ request()->is('Manage Exam*')?'active':'' }}">
+  <a class="nav-link" href="{{ route('exam.index') }}">
+      <i class="fas fa-fw fa-user"></i>
+      <span>Manage Exam</span>
+  </a>
+</li>
+
+
 @if (auth()->user()->type=='Admin')
 <li class="nav-item {{ request()->is('user*')?'active':'' }}">
   <a class="nav-link" href="{{ route('user.index') }}">

@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classes;
+use App\Models\Exam;
+use App\Models\Examtype;
+use App\Models\Students;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class ExamController extends Controller
 {
@@ -14,7 +20,8 @@ class ExamController extends Controller
      */
     public function index()
     {
-        //
+        $exams = Exam::all();
+        return view('admin.pages.exam.index', compact('exams'));
     }
 
     /**
@@ -24,7 +31,11 @@ class ExamController extends Controller
      */
     public function create()
     {
-        //
+        $exams = Exam::all();
+        $types = Examtype::all();
+        $classes = Classes::all();
+        $students = Students::all();
+        return view('admin.pages.exam.add', compact('exams','classes','students','types'));
     }
 
     /**
@@ -35,7 +46,17 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exams = new Exam();
+        $exams->date= $request ->input('date');
+        $exams->student_id= $request ->input('student_id');
+        $exams->subject= $request ->input('subject');
+        $exams->exam_type_id= $request ->input('exam_type_id');
+        $exams->score= $request ->input('score');
+        $exams->grade= $request ->input('grade');
+
+        $exams->save();
+        Session::flash('success', 'Information Added');
+        return Redirect::route('exam.create');
     }
 
     /**
